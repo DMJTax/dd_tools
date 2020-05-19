@@ -42,7 +42,8 @@ elseif mapping_task(argin,'training')			% Train a mapping.
    [a,fracrej,K,errtol] = deal(argin{:});
 	a = +target_class(a);     % make sure a is an OC dataset
 	k = size(a,2);
-
+	assert(size(a, 1) >= K, 'The number of instances in the data set must be greater or equals to the K parameter.\nDataset rows: %d\nK parameter: %d', size(a, 1), K);
+	
 	% train it:
 	[labs,w] = mykmeans(a,K,errtol);
 
